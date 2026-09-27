@@ -481,3 +481,4 @@ D:/UFAS1-Projects/doleanceapp/server/obj/Debug/net10.0/ref/Doleance.dll
 /home/djellal/workspace/doleanceapp/server/obj/Debug/net10.0/Doleance.pdb
 /home/djellal/workspace/doleanceapp/server/obj/Debug/net10.0/Doleance.genruntimeconfig.cache
 /home/djellal/workspace/doleanceapp/server/obj/Debug/net10.0/ref/Doleance.dll
+/home/djellal/workspace/doleanceapp/server/obj/Debug/net10.0/Doleance.sourcelink.json
