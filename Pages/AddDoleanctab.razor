@@ -1,0 +1,170 @@
+﻿@page "/add-doleanctab"
+@layout MainLayout
+@inherits Doleance.Pages.AddDoleanctabComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Doleance.Models.AppDb
+@using Microsoft.AspNetCore.Identity;
+@using Doleance.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<PageTitle>Add Doleanctab</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H2" style="background-color: #6d787d; border-radius: 10px; color: #e6ecef; text-align: center" Text="Soumettre une doléance">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@doleanctab" TItem="Doleance.Models.AppDb.Doleanctab" Visible="@(doleanctab != null)" Submit="@Form0Submit">
+          <ChildContent>
+            <RadzenCard>
+              <ChildContent>
+                <div style="margin-bottom: 1rem" class="row">
+                  <div class="col-md-3">
+                    <RadzenLabel Component="date" style="width: 100%" Text="Date">
+                    </RadzenLabel>
+                    <RadzenDatePicker AllowInput="true" DateFormat="d" Disabled="false" ShowSeconds="false" style="width: 100%" @bind-Value="@(doleanctab.date)" Name="Date">
+                    </RadzenDatePicker>
+                  </div>
+                  <div class="col-md-5">
+                    <RadzenLabel Component="nomprenontextbox" style="width: 100%" Text="Nom & Prénom">
+                    </RadzenLabel>
+                    <RadzenTextBox Disabled="true" style="width: 100%" @bind-Value="@(doleanctab.nomPrenom)" Name="Nomprenontextbox">
+                    </RadzenTextBox>
+                  </div>
+                  <div class="col-md-4">
+                    <RadzenLabel Component="nomprenontextbox" style="width: 100%" Text="Doléance N°">
+                    </RadzenLabel>
+                    <RadzenTextBox Disabled="true" style="color: #479cc8; width: 100%" @bind-Value="@(doleanctab.num)" Name="Numtextbox">
+                    </RadzenTextBox>
+                  </div>
+                </div>
+                <div style="margin-bottom: 1rem" class="row">
+                  <div class="col-md-12">
+                    <RadzenLabel Component="objet" style="width: 100%" Text="Objet">
+                    </RadzenLabel>
+                    <RadzenTextBox style="width: 100%" @bind-Value="@(doleanctab.objet)" Name="Objet">
+                    </RadzenTextBox>
+                  </div>
+                </div>
+                <div style="margin-bottom: 1rem" class="row">
+                  <div class="col-md-12">
+                    <RadzenLabel Component="objet" style="width: 100%" Text="Struture">
+                    </RadzenLabel>
+                    <RadzenDropDown Data="@getStructuresResult" style="width: 100%" TextProperty="Designation" @bind-Value="@(doleanctab.structId)" ValueProperty="Id" Name="Dropdown0">
+                    </RadzenDropDown>
+                  </div>
+                </div>
+              </ChildContent>
+            </RadzenCard>
+            <RadzenPanel Icon="mail" Text="Message">
+              <ChildContent>
+                <RadzenHtmlEditor style="height: 400px" UploadUrl="upload/image" @bind-Value="@(doleanctab.paragraph)" Name="HtmlEditor0">
+                  <ChildContent>
+                    <RadzenHtmlEditorBold>
+                    </RadzenHtmlEditorBold>
+                    <RadzenHtmlEditorItalic>
+                    </RadzenHtmlEditorItalic>
+                    <RadzenHtmlEditorUnderline>
+                    </RadzenHtmlEditorUnderline>
+                    <RadzenHtmlEditorAlignLeft>
+                    </RadzenHtmlEditorAlignLeft>
+                    <RadzenHtmlEditorAlignCenter>
+                    </RadzenHtmlEditorAlignCenter>
+                    <RadzenHtmlEditorAlignRight>
+                    </RadzenHtmlEditorAlignRight>
+                    <RadzenHtmlEditorJustify>
+                    </RadzenHtmlEditorJustify>
+                    <RadzenHtmlEditorUnorderedList>
+                    </RadzenHtmlEditorUnorderedList>
+                    <RadzenHtmlEditorOrderedList>
+                    </RadzenHtmlEditorOrderedList>
+                    <RadzenHtmlEditorColor>
+                      <ChildContent>
+                        <RadzenHtmlEditorColorItem Value="ff2800">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="fe9300">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="fefb00">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="02f900">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="00fdff">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="0433ff">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="ff40ff">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="942292">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="aa7942">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="ffffff">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="000000">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="53d5fd">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="73a7fe">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="874efe">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="d357fe">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="ed719e">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="ff8c82">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="ffa57d">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="ffc677">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="fff995">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="ebf38f">
+                        </RadzenHtmlEditorColorItem>
+                        <RadzenHtmlEditorColorItem Value="b1dd8c">
+                        </RadzenHtmlEditorColorItem>
+                      </ChildContent>
+                    </RadzenHtmlEditorColor>
+                    <RadzenHtmlEditorFontName>
+                      <ChildContent>
+                        <RadzenHtmlEditorFontNameItem Text="Arial" Value="Arial">
+                        </RadzenHtmlEditorFontNameItem>
+                        <RadzenHtmlEditorFontNameItem Text="Georgia" Value="Georgia">
+                        </RadzenHtmlEditorFontNameItem>
+                        <RadzenHtmlEditorFontNameItem Text="Helvetica" Value="Helvetica">
+                        </RadzenHtmlEditorFontNameItem>
+                        <RadzenHtmlEditorFontNameItem Text="Monospace" Value="monospace">
+                        </RadzenHtmlEditorFontNameItem>
+                        <RadzenHtmlEditorFontNameItem Text="Segoe UI" Value="'Segoe UI'">
+                        </RadzenHtmlEditorFontNameItem>
+                        <RadzenHtmlEditorFontNameItem Text="Tahoma" Value="Tahoma">
+                        </RadzenHtmlEditorFontNameItem>
+                        <RadzenHtmlEditorFontNameItem Text="Times New Roman" Value="'Times New Roman'">
+                        </RadzenHtmlEditorFontNameItem>
+                        <RadzenHtmlEditorFontNameItem Text="Verdana" Value="Verdana">
+                        </RadzenHtmlEditorFontNameItem>
+                      </ChildContent>
+                    </RadzenHtmlEditorFontName>
+                    <RadzenHtmlEditorFontSize>
+                    </RadzenHtmlEditorFontSize>
+                  </ChildContent>
+                </RadzenHtmlEditor>
+              </ChildContent>
+            </RadzenPanel>
+            <div style="background-color: #3a474d; padding-bottom: 5px; padding-top: 5px" class="row">
+              <div class="col   d-flex justify-content-between">
+                <RadzenButton ButtonStyle="ButtonStyle.Success" ButtonType="ButtonType.Submit" Icon="save" Text="Envoyer">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" Icon="cancel" style="margin-left: 1rem" Text="Annuler" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

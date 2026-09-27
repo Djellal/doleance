@@ -1,0 +1,82 @@
+﻿@inherits Doleance.Layouts.MainLayoutComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Doleance.Models.AppDb
+@using Microsoft.AspNetCore.Identity;
+@using Doleance.Models
+@using Doleance.Pages
+<RadzenDialog />
+<RadzenNotification />
+<RadzenTooltip />
+<RadzenContextMenu />
+
+<RadzenLayout>
+  <ChildContent>
+    <RadzenHeader>
+      <ChildContent>
+        <div class="row align-items-center justify-content-between" >
+          <div class="col-6 d-flex align-items-center">
+            <RadzenMenu>
+              <ChildContent>
+                <RadzenMenuItem Icon="home" Path="accueil" Text="Accueil" Visible="@Security.IsInRole(new string[]{"Everybody"})">
+                </RadzenMenuItem>
+                <RadzenMenuItem Icon="insert_comment" Path="doleanctab" Text="Doléances" Visible="@(Security.IsInRole(new string[] { Constants.admin, Constants.structadmin }))">
+                </RadzenMenuItem>
+                <RadzenMenuItem Icon="forward_to_inbox" Path="mesdoleances" Text="Mes doléances" Visible="@(!Security.IsInRole(new string[] { Constants.admin, Constants.structadmin }))">
+                </RadzenMenuItem>
+                <RadzenMenuItem Icon="send" Path="add-doleanctab" Text="Soumettre une Doléance" Visible="@(!Security.IsInRole(new string[] { Constants.admin, Constants.structadmin }))">
+                </RadzenMenuItem>
+                <RadzenMenuItem Icon="watch_later" Path="rendezvou" Text="Rendez-vous" Visible="@(Security.IsInRole(new string[] { Constants.admin, Constants.structadmin }))">
+                </RadzenMenuItem>
+                <RadzenMenuItem Icon="watch_later" Path="mes-rendezvous" Text="Mes Rendez-vous" Visible="@(!Security.IsInRole(new string[] { Constants.admin, Constants.structadmin }))">
+                </RadzenMenuItem>
+                <RadzenMenuItem Icon="mark_email_unread" Path="add-rendezvou" Text="Demande de rendez-vous" Visible="@(!Security.IsInRole(new string[] { Constants.admin, Constants.structadmin }))">
+                </RadzenMenuItem>
+                <RadzenMenuItem Icon="account_circle" Path="account" Text="Profil" Visible="@(Security.IsAuthenticated() && !Security.IsInRole(Constants.admin))">
+                </RadzenMenuItem>
+                <RadzenMenuItem Icon="settings" Text="Config" Visible="@(Security.IsInRole(Constants.admin))">
+                  <ChildContent>
+                    <RadzenMenuItem Icon="business" Path="structures" Text="Structures administratives">
+                    </RadzenMenuItem>
+                    <RadzenMenuItem Icon="home_work" Path="appartenance" Text="Structures de rattachement">
+                    </RadzenMenuItem>
+                  </ChildContent>
+                </RadzenMenuItem>
+              </ChildContent>
+            </RadzenMenu>
+          </div>
+          <div class="text-right col-3">
+            <RadzenProfileMenu Visible="@(Security.IsAuthenticated())" Click="@Profilemenu0Click">
+              <ChildContent>
+                <RadzenProfileMenuItem Icon="settings" Path="profile" Text="Profil" Value="Profile" Visible="@Security.IsInRole(new string[]{"Authenticated"})">
+                </RadzenProfileMenuItem>
+                <RadzenProfileMenuItem Icon="person" Path="application-users" Text="Utilisateurs" Value="Users" Visible="@(Security.IsInRole(Constants.admin))">
+                </RadzenProfileMenuItem>
+                <RadzenProfileMenuItem Icon="power_settings_new" Text="Se déconnecter" Value="Logout">
+                </RadzenProfileMenuItem>
+              </ChildContent>
+              <Template>
+                <RadzenGravatar Email="@(Security.User?.Name)">
+                </RadzenGravatar>
+              </Template>
+            </RadzenProfileMenu>
+          </div>
+        </div>
+      </ChildContent>
+    </RadzenHeader>
+    <RadzenBody @ref="body0" style="border: 2px solid #3a474d; border-radius: 10px">
+      <ChildContent>
+        <RadzenContentContainer Name="main">
+        @Body
+        </RadzenContentContainer>
+      </ChildContent>
+    </RadzenBody>
+    <RadzenFooter >
+      <ChildContent>
+        <RadzenLabel  Text="C.S.R.I.C.T.E.D , UFAS-1">
+        </RadzenLabel>
+      </ChildContent>
+    </RadzenFooter>
+  </ChildContent>
+</RadzenLayout>

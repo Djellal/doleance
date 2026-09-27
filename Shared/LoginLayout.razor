@@ -1,0 +1,28 @@
+﻿@inherits Doleance.Layouts.LoginLayoutComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Doleance.Models.AppDb
+@using Microsoft.AspNetCore.Identity;
+@using Doleance.Models
+@using Doleance.Pages
+<RadzenDialog />
+<RadzenNotification />
+<RadzenTooltip />
+<RadzenContextMenu />
+
+<RadzenBody @ref="body0" style="margin-left: 0px" Expanded="true">
+  <ChildContent>
+    <div class="row justify-content-center">
+      <div class="justify-content-center col-xl-5 col-md-7">
+        <RadzenCard style="margin-top: 8rem">
+          <ChildContent>
+            <RadzenContentContainer Name="main">
+            @Body
+            </RadzenContentContainer>
+          </ChildContent>
+        </RadzenCard>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenBody>

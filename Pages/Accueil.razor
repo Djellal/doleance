@@ -1,0 +1,67 @@
+﻿@page "/"
+@page "/accueil"
+@layout MainLayout
+@inherits Doleance.Pages.AccueilComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Doleance.Models.AppDb
+@using Microsoft.AspNetCore.Identity;
+@using Doleance.Models
+@using Microsoft.AspNetCore.Authorization
+<PageTitle>Accueil</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row align-items-center justify-content-between" style="background-color: #598087; color: #e6ecef">
+      <div class="col-md-1">
+        <RadzenImage Path="assets/images/logoufas.png" style="height: 80px; width: 120px">
+        </RadzenImage>
+      </div>
+      <div class="col-md-6">
+        <RadzenHeading Size="H2" style="color: #e6ecef; text-align: center" Text="Unversity Ferhat Abbas Sétif 1">
+        </RadzenHeading>
+        <RadzenHeading Size="H3" style="color: #e6ecef; text-align: center" Text="Portail des doléances et demandes de rendez-vous">
+        </RadzenHeading>
+      </div>
+      <div class="col-md-1">
+        <RadzenImage Path="assets/images/logoufas.png" style="height: 80px; width: 120px">
+        </RadzenImage>
+      </div>
+    </div>
+    <div style="background-color: #e6ecef; border-radius: 20px; color: #3a474d; margin-bottom: 5px; margin-top: 5px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px; padding-top: 10px" class="row">
+      <div class="col-md-12">
+        <RadzenAlert AlertStyle="AlertStyle.Info" AllowClose="false" Shade="Shade.Darker" Size="AlertSize.Small" style="text-align: center" Text="وضعت جامعة سطيف 1 – فرحات عباس هذه الأرضية الرقمية للشكاوى لتكون قناة مباشرة تمكن مختلف أفراد الأسرة الجامعية من أساتذة وطلبة ومال وكذا الخارجيين من إرسال طلباتهم و شكاواهم والتماساتهم إلى مسؤولي الجامعة و الحصول على رد في أقرب الآجال
+        
+        وهي من جهة أخرى أداة لطلب تحديد مواعيد مع مختلف مسؤولي الجامعة." Title="...كلنا آذان صاغية لكم">
+        </RadzenAlert>
+        <RadzenAlert AlertStyle="AlertStyle.Info" AllowClose="false" Shade="Shade.Darker" Size="AlertSize.Small" style="text-align: center" Text="L’Université de Sétif 1 – Ferhat Abbas a mis en place cette plateforme numérique des doléances visant à créer un canal direct permettant aux membres de la communauté universitaire (étudiants, enseignants et ATS) mais aussi aux externes de soumettre leurs requêtes, plaintes, réclamations et sollicitations aux hauts responsables de l’université et avoir une réponse dans les meilleurs délais.
+        Par ailleurs, la plateforme sert aussi d’outil de prise de rendez-vous en ligne avec les responsables de l’université." Title="L’UNIVERSITÉ À VOTRE ÉCOUTE">
+        </RadzenAlert>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="justify-content-center d-flex col-md-10">
+        <RadzenTemplateForm Action="account/login" Data="@("login")" Method="post" >
+          <ChildContent>
+            <RadzenLogin AllowResetPassword="false" LoginText="Connexion" PasswordRequired="Mot de passe requis" PasswordText="Mot de passe" RegisterMessageText="Vous n'avez pas encore de compte?" RegisterText="S'inscrire" ResetPasswordText="Mot de passe oublié ?" style="border: 2px solid #5d717b; border-radius: 10px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px; padding-top: 20px" UserRequired="Le nom est requis" UserText="Email" Visible="@(!Security.IsAuthenticated())" Register="@Login0Register" ResetPassword="@Login0ResetPassword">
+            </RadzenLogin>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+    <RadzenCard style="background-color: #598087; border-radius: 10px">
+      <ChildContent>
+        <div style="margin-top: 10px; padding-bottom: 1em; padding-top: 1em" class="row">
+          <div class="justify-content-center d-flex col-md-6" style="margin-bottom: 5px; margin-top: 5px">
+            <RadzenButton ButtonStyle="ButtonStyle.Success" Icon="send" style="height: 42px" Text="Soumettre une doléance" Click="@Button0Click">
+            </RadzenButton>
+          </div>
+          <div class="justify-content-center d-flex col-md-6" style="margin-top: 5px">
+            <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="spellcheck" style="height: 42px" Text="Demande de rendez-vous" Click="@Button1Click">
+            </RadzenButton>
+          </div>
+        </div>
+      </ChildContent>
+    </RadzenCard>
+  </ChildContent>
+</RadzenContent>

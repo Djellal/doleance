@@ -1,0 +1,58 @@
+﻿@page "/application-users"
+@layout MainLayout
+@inherits Doleance.Pages.ApplicationUsersComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Doleance.Models.AppDb
+@using Microsoft.AspNetCore.Identity;
+@using Doleance.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<PageTitle>Application Users</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row align-items-center justify-content-between">
+      <div class="col-md-2">
+        <RadzenHeading Size="H2" Text="Utilisateurs">
+        </RadzenHeading>
+      </div>
+      <div class="col-md-2">
+        <RadzenHeading Size="H2" style="text-align: right" Text="Role">
+        </RadzenHeading>
+      </div>
+      <div class="col-md-2">
+        <RadzenDropDown Data="@getRolesResult" style="width: 100%" TextProperty="Name" ValueProperty="Name" Name="Dropdown0" TValue="dynamic" Change="@Dropdown0Change">
+        </RadzenDropDown>
+      </div>
+      <div class="col-md-5 align-items-center d-flex justify-content-end">
+        <RadzenButton Icon="add_circle_outline"  Text="Ajouter" Click="@Button0Click">
+        </RadzenButton>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@users" FilterMode="Radzen.FilterMode.Simple" TItem="ApplicationUser" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenDataGridColumn TItem="ApplicationUser" Property="UserName" Title="User Name">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="ApplicationUser" Property="Nom" Title="Nom">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="ApplicationUser" Property="Prenom" Title="Prenom">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="ApplicationUser" Property="Qualite" Title="Qualite">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="ApplicationUser" Property="Affiliation" Title="Affiliation">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="ApplicationUser" Filterable="false" Sortable="false" Width="70px">
+              <Template Context="applicationUser">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, applicationUser))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

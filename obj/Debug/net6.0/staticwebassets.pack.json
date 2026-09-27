@@ -1,0 +1,145 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\328bd2e2-21d2-402a-b671-bd74f466597d.png",
+      "PackagePath": "staticwebassets\\328bd2e2-21d2-402a-b671-bd74f466597d.png"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\css\\default.css",
+      "PackagePath": "staticwebassets\\assets\\css\\default.css"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\css\\humanistic.css",
+      "PackagePath": "staticwebassets\\assets\\css\\humanistic.css"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\css\\material.css",
+      "PackagePath": "staticwebassets\\assets\\css\\material.css"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\css\\software.css",
+      "PackagePath": "staticwebassets\\assets\\css\\software.css"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\css\\standard.css",
+      "PackagePath": "staticwebassets\\assets\\css\\standard.css"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\css\\styles-generated.css",
+      "PackagePath": "staticwebassets\\assets\\css\\styles-generated.css"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\css\\styles.css",
+      "PackagePath": "staticwebassets\\assets\\css\\styles.css"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\MaterialIcons-Regular.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\MaterialIcons-Regular.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\SourceSansPro-Black.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-Black.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\SourceSansPro-BlackIt.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-BlackIt.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\SourceSansPro-Bold.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-Bold.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\SourceSansPro-BoldIt.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-BoldIt.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\SourceSansPro-ExtraLight.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-ExtraLight.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\SourceSansPro-ExtraLightIt.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-ExtraLightIt.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\SourceSansPro-It.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-It.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\SourceSansPro-Light.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-Light.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\SourceSansPro-LightIt.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-LightIt.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\SourceSansPro-Regular.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-Regular.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\SourceSansPro-Semibold.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-Semibold.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\SourceSansPro-SemiboldIt.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-SemiboldIt.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\roboto-regular.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\roboto-regular.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\roboto-v15-latin-300.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\roboto-v15-latin-300.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\roboto-v15-latin-700.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\roboto-v15-latin-700.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\roboto-v15-latin-regular.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\roboto-v15-latin-regular.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\roboto-v30-latin-300.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\roboto-v30-latin-300.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\roboto-v30-latin-500.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\roboto-v30-latin-500.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\roboto-v30-latin-700.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\roboto-v30-latin-700.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\fonts\\roboto-v30-latin-regular.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\roboto-v30-latin-regular.woff"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\assets\\images\\logoufas.png",
+      "PackagePath": "staticwebassets\\assets\\images\\logoufas.png"
+    },
+    {
+      "Id": "E:\\Projects-UFAS1\\Doleance\\App\\server\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.Doleance.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.Doleance.props",
+      "PackagePath": "build\\Doleance.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.Doleance.props",
+      "PackagePath": "buildMultiTargeting\\Doleance.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.Doleance.props",
+      "PackagePath": "buildTransitive\\Doleance.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

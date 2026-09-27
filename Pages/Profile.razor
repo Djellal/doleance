@@ -1,0 +1,126 @@
+﻿@page "/profile"
+@layout MainLayout
+@inherits Doleance.Pages.ProfileComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Doleance.Models.AppDb
+@using Microsoft.AspNetCore.Identity;
+@using Doleance.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<PageTitle>Profile</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H2" Text="Profil">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Action="account/changepassword" Data="@user" TItem="ApplicationUser" Method="post" Visible="@(user != null)">
+          <ChildContent>
+            <RadzenCard style="border: 1px solid #000000; border-radius: 10px">
+              <ChildContent>
+                <div style="margin-bottom: 1rem" class="row">
+                  <div class="col-md-2">
+                    <RadzenLabel Component="userName" style="width: 100%" Text="Email">
+                    </RadzenLabel>
+                  </div>
+                  <div class="col-md-9">
+                    <RadzenTextBox Disabled="true" style="display: block; width: 100%" @bind-Value="@(user.Name)" Name="UserName">
+                    </RadzenTextBox>
+                    <RadzenRequiredValidator Component="UserName" style="position: absolute" Text="L'email est requis">
+                    </RadzenRequiredValidator>
+                  </div>
+                </div>
+                <div style="margin-bottom: 1rem" class="row">
+                  <div class="col-md-2">
+                    <RadzenLabel Component="Nom" style="width: 100%" Text="Nom">
+                    </RadzenLabel>
+                  </div>
+                  <div class="col-md-9">
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(user.Nom)" Name="Nom">
+                    </RadzenTextBox>
+                    <RadzenRequiredValidator Component="UserName" style="position: absolute" Text="Le nom est requis">
+                    </RadzenRequiredValidator>
+                  </div>
+                </div>
+                <div style="margin-bottom: 1rem" class="row">
+                  <div class="col-md-2">
+                    <RadzenLabel Component="Qualite" style="width: 100%" Text="Qualité">
+                    </RadzenLabel>
+                  </div>
+                  <div class="col-md-9">
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(user.Qualite)" Name="Qualite">
+                    </RadzenTextBox>
+                    <RadzenRequiredValidator Component="UserName" style="position: absolute" Text="Le prénom est requis">
+                    </RadzenRequiredValidator>
+                  </div>
+                </div>
+                <div style="margin-bottom: 1rem" class="row">
+                  <div class="col-md-2">
+                    <RadzenLabel Component="Qualite" style="width: 100%" Text="Affiliation">
+                    </RadzenLabel>
+                  </div>
+                  <div class="col-md-9">
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(user.Affiliation)" Name="Affiliation">
+                    </RadzenTextBox>
+                  </div>
+                </div>
+              </ChildContent>
+            </RadzenCard>
+            <RadzenCard>
+              <ChildContent>
+                <div style="margin-bottom: 1rem" class="row">
+                  <div class="col-md-3">
+                    <RadzenLabel Component="OldPassword" style="width: 100%" Text="Ancien mot de passe">
+                    </RadzenLabel>
+                  </div>
+                  <div class="col-md-9">
+                    <RadzenPassword style="display: block; width: 100%" @bind-Value="@oldPassword" Name="OldPassword">
+                    </RadzenPassword>
+                    <RadzenRequiredValidator Component="OldPassword" style="position: absolute" Text="Enter your current password">
+                    </RadzenRequiredValidator>
+                  </div>
+                </div>
+                <div style="margin-bottom: 1rem" class="row">
+                  <div class="col-md-3">
+                    <RadzenLabel Component="NewPassword" style="width: 100%" Text="Nouveau mot de passe">
+                    </RadzenLabel>
+                  </div>
+                  <div class="col-md-9">
+                    <RadzenPassword style="display: block; width: 100%" @bind-Value="@newPassword" Name="NewPassword">
+                    </RadzenPassword>
+                    <RadzenRequiredValidator Component="NewPassword" style="position: absolute" Text="Enter your new password">
+                    </RadzenRequiredValidator>
+                  </div>
+                </div>
+                <div style="margin-bottom: 1rem" class="row">
+                  <div class="col-md-3">
+                    <RadzenLabel Component="ConfirmPassword" style="width: 100%" Text="Confirmer mot de passe">
+                    </RadzenLabel>
+                  </div>
+                  <div class="col-md-9">
+                    <RadzenPassword style="display: block; width: 100%" @bind-Value="@confirmPassword" Name="ConfirmPassword">
+                    </RadzenPassword>
+                    <RadzenRequiredValidator Component="ConfirmPassword" style="position: absolute" Text="Confirm your new password">
+                    </RadzenRequiredValidator>
+                    <RadzenCompareValidator Component="ConfirmPassword" style="position: absolute" Text="Passwords should be the same" Value="@newPassword">
+                    </RadzenCompareValidator>
+                  </div>
+                </div>
+              </ChildContent>
+            </RadzenCard>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Modifier">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Annuler" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

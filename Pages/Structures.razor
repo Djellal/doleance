@@ -1,0 +1,52 @@
+﻿@page "/structures"
+@layout MainLayout
+@inherits Doleance.Pages.StructuresComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Doleance.Models.AppDb
+@using Microsoft.AspNetCore.Identity;
+@using Doleance.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles="Authenticated, admin")]
+<PageTitle>Structures</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H2" Text="Liste des structures administratives">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Ajouter" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getStructuresResult" FilterMode="Radzen.FilterMode.Simple" TItem="Doleance.Models.AppDb.Structure" PageSize="20" RowCreate="@Grid0RowCreate" RowUpdate="@Grid0RowUpdate">
+          <Columns>
+            <RadzenDataGridColumn TItem="Doleance.Models.AppDb.Structure" Property="Designation" Title="Designation">
+              <EditTemplate Context="doleanceModelsAppDbStructure">
+                <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(doleanceModelsAppDbStructure.Designation)" Name="Designation">
+                </RadzenTextBox>
+              </EditTemplate>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Doleance.Models.AppDb.Structure" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+              <Template Context="doleanceModelsAppDbStructure">
+                <RadzenButton Icon="edit" Size="ButtonSize.Small" Click="@((args) =>EditButtonClick(args, doleanceModelsAppDbStructure))">
+                </RadzenButton>
+              </Template>
+              <EditTemplate Context="doleanceModelsAppDbStructure">
+                <RadzenButton Icon="save" Size="ButtonSize.Small" Click="@((args) =>SaveButtonClick(args, doleanceModelsAppDbStructure))">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Secondary" Icon="cancel" Size="ButtonSize.Small" Click="@((args) =>CancelButtonClick(args, doleanceModelsAppDbStructure))">
+                </RadzenButton>
+              </EditTemplate>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Doleance.Models.AppDb.Structure" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+              <Template Context="doleanceModelsAppDbStructure">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, doleanceModelsAppDbStructure))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

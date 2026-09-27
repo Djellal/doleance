@@ -1,0 +1,56 @@
+﻿@page "/mes-rendezvous"
+@layout MainLayout
+@inherits Doleance.Pages.MesRendezvousComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Doleance.Models.AppDb
+@using Microsoft.AspNetCore.Identity;
+@using Doleance.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<PageTitle>MesRendezvous</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H2" style="background-color: #598087; border-radius: 10px; color: #e6ecef; text-align: center" Text="Liste des demandes de rendez-vous">
+    </RadzenHeading>
+    <RadzenDataList @ref="datalist0" AllowPaging="true" Data="@getRendezvousResult" TItem="Doleance.Models.AppDb.Rendezvou" PageSize="10">
+      <Template Context="doleanceModelsAppDbRendezvou">
+        <div class="row align-items-center justify-content-between" style="background-color: #3a474d; border-radius: 10px; color: #e6ecef; padding-bottom: 10px; padding-top: 10px">
+          <div class="col-md-2">
+            <RadzenLabel style="margin-left: 5px; margin-right: 5px" Text="N°">
+            </RadzenLabel>
+            <RadzenLabel style="font-weight: 800" Text="@($"{(doleanceModelsAppDbRendezvou.num)}")">
+            </RadzenLabel>
+          </div>
+          <div class="col-md-3">
+            <RadzenLabel style="margin-right: 5px" Text="Date">
+            </RadzenLabel>
+            <RadzenDatePicker DateFormat="d" Disabled="true" style="width: 173px" @bind-Value="@(doleanceModelsAppDbRendezvou.date)" Name="Datepicker0">
+            </RadzenDatePicker>
+          </div>
+        </div>
+        <div class="row align-items-center justify-content-between" style="background-color: #e6ecef; border-radius: 10px; padding-bottom: 10px; padding-top: 10px">
+          <div class="col-md-6">
+            <RadzenLabel style="margin-right: 5px" Text="Objet">
+            </RadzenLabel>
+            <RadzenLabel style="font-weight: 800" Text="@($"{(doleanceModelsAppDbRendezvou.objet)}")">
+            </RadzenLabel>
+          </div>
+          <div class="justify-content-center d-flex col-md-4">
+            <RadzenLabel style="margin-right: 5px" Text="Accepté ?">
+            </RadzenLabel>
+            <RadzenSwitch @bind-Value="@(doleanceModelsAppDbRendezvou.acceptee)" Name="Switch1">
+            </RadzenSwitch>
+          </div>
+        </div>
+        <div class="row align-items-center justify-content-center" style="background-color: #e6ecef; border-radius: 10px; padding-bottom: 10px; padding-top: 10px">
+          <div class="justify-content-center d-flex col-md-3">
+            <RadzenButton Icon="visibility" style="width: 100%" Text="Voir" Click="@((args) =>Button0Click(args, doleanceModelsAppDbRendezvou))">
+            </RadzenButton>
+          </div>
+        </div>
+      </Template>
+    </RadzenDataList>
+  </ChildContent>
+</RadzenContent>

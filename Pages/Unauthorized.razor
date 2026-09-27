@@ -1,0 +1,24 @@
+﻿@page "/unauthorized"
+@layout MainLayout
+@inherits Doleance.Pages.UnauthorizedComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Doleance.Models.AppDb
+@using Microsoft.AspNetCore.Identity;
+@using Doleance.Models
+@using Microsoft.AspNetCore.Authorization
+<PageTitle>Unauthorized</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H2" style="color: #f72507; margin-top: 100px; text-align: center" Text="ACCES NON AUTORISE !!">
+    </RadzenHeading>
+    <RadzenCard style="text-align: center">
+      <ChildContent>
+        <RadzenHtml>
+          Vous n'étes pas autorisé à voir cette page
+        </RadzenHtml>
+      </ChildContent>
+    </RadzenCard>
+  </ChildContent>
+</RadzenContent>

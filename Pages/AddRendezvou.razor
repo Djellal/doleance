@@ -1,0 +1,64 @@
+﻿@page "/add-rendezvou"
+@layout MainLayout
+@inherits Doleance.Pages.AddRendezvouComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Doleance.Models.AppDb
+@using Microsoft.AspNetCore.Identity;
+@using Doleance.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<PageTitle>Add Rendezvou</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@rendezvou" TItem="Doleance.Models.AppDb.Rendezvou" Visible="@(rendezvou != null)" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-12">
+                <RadzenLabel Component="nomPrenom" style="width: 100%" Text="Nom & Prénom">
+                </RadzenLabel>
+                <RadzenTextBox style="width: 100%" @bind-Value="@(rendezvou.nomPrenom)" Name="NomPrenom">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-12">
+                <RadzenLabel Component="structId" style="width: 100%" Text="Structure/Administration">
+                </RadzenLabel>
+                <RadzenDropDown Data="@getStructuresResult" Placeholder="Choisir la Structure" style="width: 100%" TextProperty="Designation" @bind-Value="@(rendezvou.structId)" ValueProperty="Id" Name="StructId">
+                </RadzenDropDown>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-12">
+                <RadzenLabel Component="objet" style="width: 100%" Text="Objet">
+                </RadzenLabel>
+                <RadzenTextArea style="width: 100%" @bind-Value="@(rendezvou.objet)" Name="Textarea0">
+                </RadzenTextArea>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-12">
+                <RadzenLabel Component="dateDemandee" style="width: 100%" Text="Date Demandeé">
+                </RadzenLabel>
+                <RadzenDatePicker style="width: 100%" @bind-Value="@(rendezvou.dateDemandee)" Name="DateDemandee">
+                </RadzenDatePicker>
+              </div>
+            </div>
+            <div class="row justify-content-around" style="background-color: #e6ecef; padding-bottom: 1em; padding-top: 1em">
+              <div class="col  justify-content-between d-flex" >
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Envoyer">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" Icon="cancel" style="margin-left: 1rem" Text="Annuler" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

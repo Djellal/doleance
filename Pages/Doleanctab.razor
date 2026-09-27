@@ -1,0 +1,72 @@
+﻿@page "/doleanctab"
+@layout MainLayout
+@inherits Doleance.Pages.DoleanctabComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Doleance.Models.AppDb
+@using Microsoft.AspNetCore.Identity;
+@using Doleance.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles="Authenticated, admin, structadmin")]
+<PageTitle>Doleanctab</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H2" style="background-color: #598087; border-radius: 10px; color: #e6ecef; text-align: center" Text="Liste des doléances déposées">
+    </RadzenHeading>
+    <div style="margin-bottom: 12px" class="row">
+      <div class="d-flex align-items-center col-md-10 justify-content-start">
+        <RadzenButton ButtonStyle="ButtonStyle.Success" Icon="add_circle_outline" Size="ButtonSize.Small"  Text="Soumettre une doléance" Visible="@(!Security.IsInRole(Constants.admin))" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenSelectBar Size="ButtonSize.Small" TValue="dynamic" Name="Selectbar0" Change="@Selectbar0Change">
+          <Items>
+            <RadzenSelectBarItem Text="Tous" Value="2">
+            </RadzenSelectBarItem>
+            <RadzenSelectBarItem Text="Sans réponse" Value="0">
+            </RadzenSelectBarItem>
+            <RadzenSelectBarItem Text="Répondu" Value="1">
+            </RadzenSelectBarItem>
+          </Items>
+        </RadzenSelectBar>
+        <RadzenDropDown AllowClear="true" AllowFiltering="true" Data="@getStructuresResult" Placeholder="Structure administrative" TextProperty="Designation" @bind-Value="@SelectedStucture" ValueProperty="Id" Visible="@(Security.IsInRole(Constants.admin))" Name="Stucturesdropdown" Change="@StucturesdropdownChange">
+        </RadzenDropDown>
+      </div>
+      <div class="col-md-2 align-items-center d-flex">
+        <RadzenButton Icon="cloud_download" Size="ButtonSize.Small" Text="Exporter" Click="@ExporterbuttonClick">
+        </RadzenButton>
+      </div>
+    </div>
+    <RadzenCard style="border: 1px solid #000000">
+      <ChildContent>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getDoleanctabsResult" FilterMode="Radzen.FilterMode.Simple" TItem="Doleance.Models.AppDb.Doleanctab" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenDataGridColumn TItem="Doleance.Models.AppDb.Doleanctab" Property="num" Title="N°" Width="100px">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Doleance.Models.AppDb.Doleanctab" FormatString="{0:d}" Property="date" Title="Date" Width="120px">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Doleance.Models.AppDb.Doleanctab" Property="nomPrenom" Title="Nom & Prénom" Width="200px">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Doleance.Models.AppDb.Doleanctab" Property="objet" Title="Objet">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Doleance.Models.AppDb.Doleanctab" TextAlign="TextAlign.Center" Title="Repondu?" Width="120px">
+              <Template Context="doleanceModelsAppDbDoleanctab">
+                <RadzenSwitch Disabled="true" @bind-Value="@(doleanceModelsAppDbDoleanctab.repondu)" Name="Switch0">
+                </RadzenSwitch>
+              </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Doleance.Models.AppDb.Doleanctab" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+              <Template Context="doleanceModelsAppDbDoleanctab">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Disabled="@(doleanceModelsAppDbDoleanctab.repondu && !Security.IsInRole(Constants.admin))" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, doleanceModelsAppDbDoleanctab))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </ChildContent>
+    </RadzenCard>
+    <div class="row">
+      <div class="col-md-12">
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

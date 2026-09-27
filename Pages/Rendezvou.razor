@@ -1,0 +1,40 @@
+﻿@page "/rendezvou"
+@layout MainLayout
+@inherits Doleance.Pages.RendezvouComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Doleance.Models.AppDb
+@using Microsoft.AspNetCore.Identity;
+@using Doleance.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles="Authenticated, admin, structadmin")]
+<PageTitle>Rendezvou</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H2" Text="Liste des demandes de rendez-vous">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Ajouter" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getRendezvousResult" FilterMode="Radzen.FilterMode.Simple" TItem="Doleance.Models.AppDb.Rendezvou" PageSize="20" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenDataGridColumn TItem="Doleance.Models.AppDb.Rendezvou" Property="num" Title="Num">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Doleance.Models.AppDb.Rendezvou" Property="nomPrenom" Title="Nom Prenom">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Doleance.Models.AppDb.Rendezvou" Property="objet" Title="Objet">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Doleance.Models.AppDb.Rendezvou" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+              <Template Context="doleanceModelsAppDbRendezvou">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, doleanceModelsAppDbRendezvou))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
