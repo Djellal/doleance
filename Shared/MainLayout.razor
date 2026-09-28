@@ -11,42 +11,51 @@
 <RadzenTooltip />
 <RadzenContextMenu />
 
-<RadzenLayout>
+<RadzenLayout class="doleance-shell">
   <ChildContent>
     <RadzenHeader>
       <ChildContent>
-        <div class="row align-items-center justify-content-between" >
-          <div class="col-6 d-flex align-items-center">
-            <RadzenMenu>
-              <ChildContent>
-                <RadzenMenuItem Icon="home" Path="accueil" Text="Accueil" Visible="@Security.IsInRole(new string[]{"Everybody"})">
-                </RadzenMenuItem>
-                <RadzenMenuItem Icon="insert_comment" Path="doleanctab" Text="Doléances" Visible="@(Security.IsInRole(new string[] { Constants.admin, Constants.structadmin }))">
-                </RadzenMenuItem>
-                <RadzenMenuItem Icon="forward_to_inbox" Path="mesdoleances" Text="Mes doléances" Visible="@(!Security.IsInRole(new string[] { Constants.admin, Constants.structadmin }))">
-                </RadzenMenuItem>
-                <RadzenMenuItem Icon="send" Path="add-doleanctab" Text="Soumettre une Doléance" Visible="@(!Security.IsInRole(new string[] { Constants.admin, Constants.structadmin }))">
-                </RadzenMenuItem>
-                <RadzenMenuItem Icon="watch_later" Path="rendezvou" Text="Rendez-vous" Visible="@(Security.IsInRole(new string[] { Constants.admin, Constants.structadmin }))">
-                </RadzenMenuItem>
-                <RadzenMenuItem Icon="watch_later" Path="mes-rendezvous" Text="Mes Rendez-vous" Visible="@(!Security.IsInRole(new string[] { Constants.admin, Constants.structadmin }))">
-                </RadzenMenuItem>
-                <RadzenMenuItem Icon="mark_email_unread" Path="add-rendezvou" Text="Demande de rendez-vous" Visible="@(!Security.IsInRole(new string[] { Constants.admin, Constants.structadmin }))">
-                </RadzenMenuItem>
-                <RadzenMenuItem Icon="account_circle" Path="account" Text="Profil" Visible="@(Security.IsAuthenticated() && !Security.IsInRole(Constants.admin))">
-                </RadzenMenuItem>
-                <RadzenMenuItem Icon="settings" Text="Config" Visible="@(Security.IsInRole(Constants.admin))">
-                  <ChildContent>
-                    <RadzenMenuItem Icon="business" Path="structures" Text="Structures administratives">
-                    </RadzenMenuItem>
-                    <RadzenMenuItem Icon="home_work" Path="appartenance" Text="Structures de rattachement">
-                    </RadzenMenuItem>
-                  </ChildContent>
-                </RadzenMenuItem>
-              </ChildContent>
-            </RadzenMenu>
-          </div>
-          <div class="text-right col-3">
+        <div class="doleance-header-row">
+          <a class="doleance-brand" href="accueil" title="UFAS1 — C.S.R.I.C.T.E.D">
+            <img class="doleance-brand-logo" src="assets/images/logoufas.png" alt="Université Ferhat Abbas Sétif 1" />
+            <span class="doleance-brand-text">
+              <span class="doleance-brand-title">Doléances &amp; Rendez-vous</span>
+              <span class="doleance-brand-subtitle">C.S.R.I.C.T.E.D — UFAS1</span>
+            </span>
+          </a>
+
+          <RadzenMenu class="doleance-nav" Responsive="true">
+            <ChildContent>
+              <RadzenMenuItem Icon="home" Path="accueil" Text="Accueil" Visible="@Security.IsInRole(new string[]{"Everybody"})">
+              </RadzenMenuItem>
+              <RadzenMenuItem Icon="insert_comment" Path="doleanctab" Text="Doléances" Visible="@(Security.IsInRole(new string[] { Constants.admin, Constants.structadmin }))">
+              </RadzenMenuItem>
+              <RadzenMenuItem Icon="forward_to_inbox" Path="mesdoleances" Text="Mes doléances" Visible="@(!Security.IsInRole(new string[] { Constants.admin, Constants.structadmin }))">
+              </RadzenMenuItem>
+              <RadzenMenuItem Icon="send" Path="add-doleanctab" Text="Soumettre une Doléance" Visible="@(!Security.IsInRole(new string[] { Constants.admin, Constants.structadmin }))">
+              </RadzenMenuItem>
+              <RadzenMenuItem Icon="watch_later" Path="rendezvou" Text="Rendez-vous" Visible="@(Security.IsInRole(new string[] { Constants.admin, Constants.structadmin }))">
+              </RadzenMenuItem>
+              <RadzenMenuItem Icon="watch_later" Path="mes-rendezvous" Text="Mes Rendez-vous" Visible="@(!Security.IsInRole(new string[] { Constants.admin, Constants.structadmin }))">
+              </RadzenMenuItem>
+              <RadzenMenuItem Icon="mark_email_unread" Path="add-rendezvou" Text="Demande de rendez-vous" Visible="@(!Security.IsInRole(new string[] { Constants.admin, Constants.structadmin }))">
+              </RadzenMenuItem>
+              <RadzenMenuItem Icon="account_circle" Path="account" Text="Profil" Visible="@(Security.IsAuthenticated() && !Security.IsInRole(Constants.admin))">
+              </RadzenMenuItem>
+              <RadzenMenuItem Icon="settings" Text="Config" Visible="@(Security.IsInRole(Constants.admin))">
+                <ChildContent>
+                  <RadzenMenuItem Icon="business" Path="structures" Text="Structures administratives">
+                  </RadzenMenuItem>
+                  <RadzenMenuItem Icon="home_work" Path="appartenance" Text="Structures de rattachement">
+                  </RadzenMenuItem>
+                </ChildContent>
+              </RadzenMenuItem>
+            </ChildContent>
+          </RadzenMenu>
+
+          <div class="doleance-header-spacer"></div>
+
+          <div class="doleance-header-account">
             <RadzenProfileMenu Visible="@(Security.IsAuthenticated())" Click="@Profilemenu0Click">
               <ChildContent>
                 <RadzenProfileMenuItem Icon="settings" Path="profile" Text="Profil" Value="Profile" Visible="@Security.IsInRole(new string[]{"Authenticated"})">
@@ -57,25 +66,38 @@
                 </RadzenProfileMenuItem>
               </ChildContent>
               <Template>
-                <RadzenGravatar Email="@(Security.User?.Name)">
-                </RadzenGravatar>
+                <div class="doleance-user">
+                  <RadzenGravatar Email="@(Security.User?.Name)">
+                  </RadzenGravatar>
+                  <span class="doleance-user-meta">
+                    <span class="doleance-user-name">@DisplayName</span>
+                    @if (!string.IsNullOrEmpty(RoleLabel))
+                    {
+                      <span class="doleance-user-role">@RoleLabel</span>
+                    }
+                  </span>
+                  <i class="rzi doleance-user-caret">expand_more</i>
+                </div>
               </Template>
             </RadzenProfileMenu>
           </div>
         </div>
       </ChildContent>
     </RadzenHeader>
-    <RadzenBody @ref="body0" style="border: 2px solid #3a474d; border-radius: 10px">
+    <RadzenBody @ref="body0" class="doleance-body">
       <ChildContent>
         <RadzenContentContainer Name="main">
-        @Body
+          @Body
         </RadzenContentContainer>
       </ChildContent>
     </RadzenBody>
-    <RadzenFooter >
+    <RadzenFooter>
       <ChildContent>
-        <RadzenLabel  Text="C.S.R.I.C.T.E.D , UFAS-1">
-        </RadzenLabel>
+        <div class="doleance-footer-row">
+          <span class="doleance-footer-brand">Doléances &amp; Rendez-vous — UFAS1</span>
+          <span class="doleance-footer-sep" aria-hidden="true"></span>
+          <span class="doleance-footer-owner">C.S.R.I.C.T.E.D</span>
+        </div>
       </ChildContent>
     </RadzenFooter>
   </ChildContent>

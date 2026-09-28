@@ -58,9 +58,24 @@ namespace Doleance
             services.AddHttpClient();
             services.AddAuthentication();
             services.AddAuthorization();
+
+            // Both contexts share one SQLite file, so resolve the connection string
+            // once. It comes from appsettings.json, overridden per environment by
+            // appsettings.Development.json (relative, "app.db") and
+            // appsettings.Production.json ("/opt/doleanceapp/app.db"), and can still be
+            // overridden at deploy time with ConnectionStrings__AppDbConnection.
+            var appDbConnection = Configuration.GetConnectionString("AppDbConnection");
+            if (string.IsNullOrWhiteSpace(appDbConnection))
+            {
+                throw new InvalidOperationException(
+                    "Connection string 'AppDbConnection' is not configured. Set it in " +
+                    "appsettings.json, appsettings.{EnvironmentName}.json, or the " +
+                    "ConnectionStrings__AppDbConnection environment variable.");
+            }
+
             services.AddDbContext<ApplicationIdentityDbContext>(options =>
             {
-                options.UseSqlite(Configuration.GetConnectionString("AppDbConnection"));
+                options.UseSqlite(appDbConnection);
             }, ServiceLifetime.Transient);            
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -73,7 +88,7 @@ namespace Doleance
 
             services.AddDbContext<Doleance.Data.AppDbContext>(options =>
             {
-              options.UseSqlite(Configuration.GetConnectionString("AppDbConnection"));
+              options.UseSqlite(appDbConnection);
             });
 
             services.AddControllersWithViews();

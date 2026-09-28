@@ -1,0 +1,102 @@
+# ---------------------------------------------------------------------------
+# .gitignore for Doleance — ASP.NET Core 10 / Blazor Server (net10.0)
+#
+# IMPORTANT: bin/, obj/ and .vs/ are ALREADY TRACKED in this repository
+# (627 files committed in the initial commit). A .gitignore only applies to
+# untracked files, so it has no effect on them until they are removed from the
+# index with:
+#
+#     git rm -r --cached bin obj .vs
+#
+# Until that is done, `git status` will keep showing churn on build output.
+# app.db is deliberately NOT ignored — see the "SQLite" section below.
+# ---------------------------------------------------------------------------
+
+# Build output
+[Bb]in/
+[Oo]bj/
+[Pp]ublish/
+[Pp]ub/
+artifacts/
+*.dll
+*.exe
+*.dylib
+*.so
+*.a
+*.pdb
+*.dll.config
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+!packages/build/
+project.lock.json
+project.fragment.lock.json
+artifacts/project.assets.json
+
+# Test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.coverage
+*.coveragexml
+coverage*.json
+coverage*.xml
+coverage*.info
+TestResults/
+
+# Visual Studio / Rider / VS Code
+.vs/
+bin/
+obj/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.opendb
+*.VC.db
+.vscode-test/
+
+# IIS / runtime logs
+# web.config sets stdoutLogFile=".\radzen", so IIS writes radzen*.log here.
+radzen*.log
+*.log
+
+# Local secrets — appsettings.json IS tracked (it is committed on purpose);
+# only the developer-specific override is not.
+appsettings.*.local.json
+appsettings.Local.json
+*.pfx
+*.snk
+
+# SQLite
+# app.db is intentionally TRACKED: AGENTS.md documents it as the schema source
+# of truth for the five AppDb tables, which are not covered by any migration.
+# Do not add "app.db" here or a fresh clone will start with an empty database.
+app.db-shm
+app.db-wal
+*.db-journal
+
+# OS / editor noise
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.swp
+*~

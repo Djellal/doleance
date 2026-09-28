@@ -6,3 +6,235 @@
 /* Import the Radzen CSS files */
 @import './styles-generated.css';
 
+/* ---------------------------------------------------------------------------
+   App shell (Shared/MainLayout.razor)
+   Radzen 4.x styles its layout components through CSS custom properties, so
+   these override tokens instead of fighting the theme defaults. Everything is
+   scoped under .doleance-shell so the LoginLayout is left untouched.
+   --------------------------------------------------------------------------- */
+.doleance-shell {
+  --rz-header-min-height: 3.75rem;
+  --rz-header-shadow: 0 1px 2px rgba(31, 41, 51, 0.08), 0 2px 8px rgba(31, 41, 51, 0.06);
+  --rz-layout-body-padding: 1.25rem 1.5rem;
+  --rz-footer-padding: 0.7rem 1.5rem;
+  --rz-menu-top-item-background-color: transparent;
+  --rz-menu-top-item-hover-color: var(--rz-text-color);
+  --rz-menu-top-item-icon-color: var(--rz-primary);
+  --rz-menu-top-item-icon-hover-color: var(--rz-primary);
+  --rz-menu-top-item-hover-background-color: var(--rz-primary-lighter);
+  --rz-menu-top-item-selected-color: var(--rz-primary);
+  --rz-menu-top-item-border-radius: 4px;
+  --rz-menu-top-item-padding: 0.45rem 0.7rem;
+  --rz-menu-item-padding: 0.45rem 0.7rem;
+  --rz-menu-item-border-radius: 4px;
+  --rz-profile-menu-top-item-background-color: transparent;
+}
+
+.doleance-shell .rz-header {
+  display: flex;
+  align-items: center;
+  padding: 0 1.25rem;
+}
+
+.doleance-header-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Brand block: the UFAS logo is the first thing the header renders. */
+.doleance-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex: 0 0 auto;
+  color: inherit;
+  text-decoration: none;
+}
+
+.doleance-brand-logo {
+  height: 2.5rem;
+  width: auto;
+  object-fit: contain;
+}
+
+.doleance-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.doleance-brand-title {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--rz-primary);
+  white-space: nowrap;
+}
+
+.doleance-brand-subtitle {
+  font-size: 0.72rem;
+  color: var(--rz-text-secondary-color);
+  white-space: nowrap;
+}
+
+/* Primary navigation. The items may wrap onto a second line rather than being
+   clipped: Radzen only collapses the menu into its hamburger at a fixed,
+   measurement-based threshold, which leaves a band where the labels would
+   otherwise spill over the account block. Below ~760px Radzen hides the items
+   itself, so wrapping never applies there. */
+.doleance-nav {
+  flex: 0 1 auto;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-content: center;
+  row-gap: 0.15rem;
+  column-gap: 0.1rem;
+}
+
+/* Radzen flags the current root nav item as .active + aria-current="page" on the
+   link itself — its own rz-navigation-item-wrapper-active rules never match in
+   4.34.4 — so the selected pill has to be styled here. Hover is left to Radzen
+   and only re-tinted through the variables above: the theme's selectors are
+   more specific than a plain .doleance-nav descendant rule, so setting `color`
+   in a rule like the one below would silently lose. Labels keep the dark text
+   token on the teal tint (that pairing clears WCAG AA, whereas primary-on-tint
+   is only ~3.6:1) and the brand colour is carried by the icon, which needs 3:1. */
+.doleance-nav .rz-navigation-item-link.active,
+.doleance-nav .rz-navigation-item-link[aria-current="page"] {
+  background-color: var(--rz-primary-lighter);
+  color: var(--rz-text-color);
+  font-weight: 600;
+}
+
+.doleance-nav .rz-navigation-item-link.active .rzi,
+.doleance-nav .rz-navigation-item-link[aria-current="page"] .rzi {
+  color: var(--rz-primary);
+}
+
+/* Keep the active item readable while the pointer is over it (Radzen's hover
+   variables would otherwise repaint the text). */
+.doleance-nav .rz-navigation-item-link.active:hover,
+.doleance-nav .rz-navigation-item-link[aria-current="page"]:hover {
+  background-color: var(--rz-primary-lighter);
+  color: var(--rz-text-color);
+}
+
+.doleance-nav .rz-navigation-item-link:focus-visible {
+  outline: 2px solid var(--rz-primary);
+  outline-offset: 1px;
+}
+
+.doleance-header-spacer {
+  flex: 1 1 auto;
+  min-width: 0.5rem;
+}
+
+/* Signed-in user block on the right of the header. */
+.doleance-header-account {
+  flex: 0 0 auto;
+}
+
+.doleance-user {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--rz-base-300);
+  background-color: var(--rz-base-background-color);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  --rz-gravatar-width: 2.1rem;
+  --rz-gravatar-height: 2.1rem;
+}
+
+.doleance-user:hover {
+  border-color: var(--rz-secondary);
+  box-shadow: 0 1px 4px rgba(31, 41, 51, 0.12);
+}
+
+.doleance-user .rz-gravatar {
+  box-shadow: 0 0 0 1px var(--rz-base-300);
+}
+
+.doleance-user-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  text-align: left;
+  max-width: 11rem;
+}
+
+.doleance-user-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.doleance-user-role {
+  font-size: 0.7rem;
+  color: var(--rz-text-secondary-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.doleance-user-caret {
+  color: var(--rz-text-secondary-color);
+  font-size: 1.1rem;
+}
+
+/* Main content sits in a soft card so it reads as a distinct surface from the
+   layout background, replacing the old 2px inline border. */
+.doleance-shell .doleance-body {
+  background-color: transparent;
+  border-radius: 8px;
+  background-clip: padding-box;
+  box-shadow: 0 0 0 1px var(--rz-base-300);
+}
+
+.doleance-footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  color: var(--rz-text-secondary-color);
+}
+
+.doleance-footer-brand {
+  font-weight: 600;
+  color: var(--rz-primary);
+}
+
+.doleance-footer-sep {
+  width: 1px;
+  height: 0.9rem;
+  background-color: var(--rz-base-300);
+}
+
+/* Drop the wordmark before the header gets crowded, so the nav keeps its room. */
+@media (max-width: 1199px) {
+  .doleance-brand-text {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .doleance-shell {
+    --rz-layout-body-padding: 0.85rem 0.75rem;
+    --rz-footer-padding: 0.6rem 0.75rem;
+  }
+
+  .doleance-user-meta {
+    display: none;
+  }
+
+  .doleance-user {
+    padding: 0.3rem;
+  }
+}
